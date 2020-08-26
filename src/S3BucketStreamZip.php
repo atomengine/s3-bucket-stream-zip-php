@@ -10,9 +10,9 @@
  * Example usage can be found in the examples folder.
  */
 
-namespace JMathai\S3BucketStreamZip;
+namespace AtomEngine\S3BucketStreamZip;
 
-use JMathai\S3BucketStreamZip\Exception\InvalidParameterException;
+use AtomEngine\S3BucketStreamZip\Exception\InvalidParameterException;
 
 use Aws\S3\S3Client;
 use Aws\S3\Exception\S3Exception;
