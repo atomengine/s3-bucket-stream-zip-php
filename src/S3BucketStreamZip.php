@@ -53,8 +53,8 @@ class S3BucketStreamZip
   /**
    * Create a new ZipStream object.
    *
-   * @param Array $auth     - AWS key and secret
-   * @param Array $params   - AWS List Object parameters
+   * @param array $auth     - AWS key and secret
+   * @param array $params   - AWS List Object parameters
    */
   public function __construct($auth, $params)
   {
@@ -80,7 +80,7 @@ class S3BucketStreamZip
    * Stream a zip file to the client
    *
    * @param String $filename  - Name for the file to be sent to the client
-   * @param Array  $params    - Optional parameters
+   * @param array  $params    - Optional parameters
    *  {
    *    expiration: '+10 minutes'
    *  }
