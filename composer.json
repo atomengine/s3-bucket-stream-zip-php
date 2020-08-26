@@ -16,6 +16,7 @@
     "issues": "https://github.com/jmathai/s3-bucket-stream-zip-php/issues"
   },
   "require": {
+    "ext-curl" : "*",
     "php": ">=5.3.3",
     "maennchen/zipstream-php": "2.1.0",
     "aws/aws-sdk-php": "^3.0"

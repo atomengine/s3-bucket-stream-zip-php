@@ -87,10 +87,12 @@ class S3BucketStreamZip
         if (!isset($params['expiration']))
             $params['expiration'] = '+6 hours';
 
+        $options = new ZipStream\Option\Archive();
+        $options->setSendHttpHeaders(true);
         // Initialize the ZipStream object and pass in the file name which
         //  will be what is sent in the content-disposition header.
         // This is the name of the file which will be sent to the client.
-        $zip = new ZipStream\ZipStream($filename);
+        $zip = new ZipStream\ZipStream($filename,$options);
 
         // Get a list of objects from the S3 bucket. The iterator is a high
         //  level abstration that will fetch ALL of the objects without having
