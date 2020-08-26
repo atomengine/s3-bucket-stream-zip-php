@@ -1,6 +1,6 @@
 {
-  "name": "jmathai/s3-bucket-stream-zip-php",
-  "homepage": "https://github.com/jmathai/s3-bucket-stream-zip-php",
+  "name": "atomengine/s3-bucket-stream-zip-php",
+  "homepage": "https://github.com/atomengine/s3-bucket-stream-zip-php",
   "description": "PHP library to efficiently stream contents from an AWS S3 bucket or folder as a zip file",
   "keywords": ["amazon","aws","s3","stream","zip","php","download"],
   "type": "library",
@@ -25,7 +25,7 @@
   },
   "autoload": {
     "psr-4": {
-      "JMathai\\S3BucketStreamZip\\": "src/"
+      "AtomEngine\\S3BucketStreamZip\\": "src/"
     }
   }
 }

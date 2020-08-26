@@ -10,9 +10,9 @@
  * Example usage can be found in the examples folder.
  */
 
-namespace JMathai\S3BucketStreamZip;
+namespace AtomEngine\S3BucketStreamZip;
 
-use JMathai\S3BucketStreamZip\Exception\InvalidParameterException;
+use AtomEngine\S3BucketStreamZip\Exception\InvalidParameterException;
 
 use Aws\S3\S3Client;
 use Aws\S3\Exception\S3Exception;
@@ -50,12 +50,13 @@ class S3BucketStreamZip
    */
   private $s3Client;
 
-  /**
-   * Create a new ZipStream object.
-   *
-   * @param array $auth     - AWS key and secret
-   * @param array $params   - AWS List Object parameters
-   */
+    /**
+     * Create a new ZipStream object.
+     *
+     * @param array $auth - AWS key and secret
+     * @param array $params - AWS List Object parameters
+     * @throws InvalidParameterException
+     */
   public function __construct($auth, $params)
   {
     // We require the AWS key to be passed in $auth.
