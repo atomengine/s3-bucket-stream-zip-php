@@ -17,7 +17,7 @@
   },
   "require": {
     "php": ">=5.3.3",
-    "maennchen/zipstream-php": "0.3.*",
+    "maennchen/zipstream-php": "2.1.0",
     "aws/aws-sdk-php": "2.*"
   },
   "require-dev": {
