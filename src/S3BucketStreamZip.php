@@ -24,16 +24,6 @@ class S3BucketStreamZip
     /**
      * @var array
      *
-     * {
-     *   key: your_aws_key,
-     *   secret: your_aws_secret
-     * }
-     */
-    private $auth = array();
-
-    /**
-     * @var array
-     *
      * See the documentation for the List Objects API for valid parameters.
      * Only `Bucket` is required.
      *
@@ -57,14 +47,14 @@ class S3BucketStreamZip
      * @param array $params - AWS List Object parameters
      * @throws InvalidParameterException
      */
-    public function __construct($auth, $params)
+    public function __construct($params)
     {
         // We require the AWS key to be passed in $auth.
-        if (!isset($auth['key']))
+        if (!isset($params['key']))
             throw new InvalidParameterException('$auth parameter to constructor requires a `key` attribute');
 
         // We require the AWS secret to be passed in $auth.
-        if (!isset($auth['secret']))
+        if (!isset($params['secret']))
             throw new InvalidParameterException('$auth parameter to constructor requires a `secret` attribute');
 
         // We require the AWS S3 bucket to be passed in $params.
@@ -74,14 +64,12 @@ class S3BucketStreamZip
         // We require the AWS S3 region to be passed in $params.
         if (!isset($params['region']))
             throw new InvalidParameterException('$params parameter to constructor requires a `region` attribute');
-        // We require the AWS  version to be passed in $params.
-        if (!isset($params['version']))
-            throw new InvalidParameterException('$params parameter to constructor requires a `version` attribute');
 
-        $this->auth = $auth;
+        $params['version'] = "2006-03-01";
+
         $this->params = $params;
 
-        $this->s3Client = new S3Client(array_merge($this->auth, $this->params));
+        $this->s3Client = new S3Client($this->params);
     }
 
     /**
@@ -117,8 +105,8 @@ class S3BucketStreamZip
                 'Bucket' => $this->params['Bucket'],
                 'Key' => $file['Key']
             ));
-            $signedUrl = $this->s3Client->createPresignedRequest($command, "+1 week");
-
+            $response = $this->s3Client->createPresignedRequest($command, "+1 week");
+            $signedUrl = (string)$response->getUri();
             // Get the file name on S3 so we can save it to the zip file
             //  using the same name.
             $fileName = basename($file['Key']);
