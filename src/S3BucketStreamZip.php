@@ -97,7 +97,7 @@ class S3BucketStreamZip
     {
         // Set default values for the optional $params argument
         if (!isset($params['expiration']))
-            $params['expiration'] = '+10 minutes';
+            $params['expiration'] = '+6 hours';
 
         // Initialize the ZipStream object and pass in the file name which
         //  will be what is sent in the content-disposition header.
@@ -117,7 +117,7 @@ class S3BucketStreamZip
                 'Bucket' => $this->params['Bucket'],
                 'Key' => $file['Key']
             ));
-            $signedUrl = $command->createPresignedUrl($params['expiration']);
+            $signedUrl = $this->s3Client->createPresignedRequest($command, "+1 week");
 
             // Get the file name on S3 so we can save it to the zip file
             //  using the same name.
