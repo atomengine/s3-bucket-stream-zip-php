@@ -46,7 +46,7 @@ class S3BucketStreamZip
   private $params = array();
 
   /**
-   * @var object
+   * @var S3Client
    */
   private $s3Client;
 
@@ -71,10 +71,14 @@ class S3BucketStreamZip
     if(!isset($params['Bucket']))
       throw new InvalidParameterException('$params parameter to constructor requires a `Bucket` attribute (with a capital B)');
 
+      // We require the AWS S3 bucket to be passed in $params.
+      if(!isset($params['region']))
+          throw new InvalidParameterException('$params parameter to constructor requires a `region` attribute');
+
     $this->auth   = $auth;
     $this->params = $params;
 
-    $this->s3Client = S3Client::factory($this->auth);
+    $this->s3Client = new S3Client(array_merge($this->auth,$this->params));
   }
 
   /**
